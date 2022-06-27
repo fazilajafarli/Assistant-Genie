@@ -2,9 +2,7 @@ import pyttsx3
 import speech_recognition as sr
 import requests
 import datetime
-import os
 import wikipedia
-import random
 
 
 engine = pyttsx3.init('sapi5')
@@ -60,8 +58,27 @@ while True:
                     speak('ok!')
                     pass
             trendnews() 
-
-
+    elif 'movie' in query:
+            def find_movie():
+                speak("Please, tell me the name of the movie?")
+                reply = command().lower()
+                response = requests.get(f'http://www.omdbapi.com/?t={reply}&apikey=c21b7b9b') 
+                try:
+                    movie = response.json()
+                    print(movie['Title'])
+                    speak('Here is the information about the movie.')
+                    speak(movie['Title'])
+                    speak('was filmed in')
+                    speak(movie['Year'])
+                    speak('Release date is') 
+                    speak(movie['Released'])
+                    speak('Genre of the movie is')
+                    speak(movie['Genre'])
+                    speak('And director is')
+                    speak(movie['Director'])
+                except KeyError:
+                    speak('Sorry, master, I cannot find that movie.')
+            find_movie()
 
     elif "bye" in query:
         speak("Bye-bye master!")
