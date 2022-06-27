@@ -44,7 +44,7 @@ while True:
             speak(wikipedia.summary(query,2))
         elif 'news' in query:
                 def trendnews(): 
-                    url = "http://newsapi.org/v2/top-headlines?country=in&apiKey=59ff055b7c754a10a1f8afb4583ef1ab"
+                    url = "http://newsapi.org/v2/top-headlines?country=us&apiKey=59ff055b7c754a10a1f8afb4583ef1ab"
                     page = requests.get(url).json() 
                     article = page["articles"] 
                     results = [] 
