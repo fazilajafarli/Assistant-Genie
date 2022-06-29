@@ -21,7 +21,7 @@ def command():
         audio=r.listen(source)
         try:    
             query = r.recognize_google(audio)
-            print(f"master:{query}")
+            print(f"Aladdin:{query}")
             return query
         except:
             speak("I didn't hear you well, master.")
@@ -32,7 +32,7 @@ while True:
     try:
         query = command().lower()
         if 'name' in query:
-            speak("Hello! My name is Genie, master!")
+            speak("Hello, my master! My name is Genie!")
         elif 'time' in query:
             time = datetime.datetime.now().strftime('%I:%M')
             speak(f"It's {time}")
@@ -44,7 +44,7 @@ while True:
             speak(wikipedia.summary(query,2))
         elif 'news' in query:
                 def trendnews(): 
-                    url = "http://newsapi.org/v2/top-headlines?country=in&apiKey=59ff055b7c754a10a1f8afb4583ef1ab"
+                    url = "http://newsapi.org/v2/top-headlines?country=us&apiKey=59ff055b7c754a10a1f8afb4583ef1ab"
                     page = requests.get(url).json() 
                     article = page["articles"] 
                     results = [] 
@@ -64,7 +64,7 @@ while True:
                 trendnews() 
         elif 'movie' in query:
                 def find_movie():
-                    speak("Please, tell me the name of the movie?")
+                    speak("Tell me the name of the movie?")
                     reply = command().lower()
                     response = requests.get(f'http://www.omdbapi.com/?t={reply}&apikey=c21b7b9b') 
                     try:
@@ -81,7 +81,7 @@ while True:
                         speak('And director is')
                         speak(movie['Director'])
                     except KeyError:
-                        speak('Sorry, master, I cannot find that movie.')
+                        speak('Sorry, master, I don\'t know that movie.')
                 find_movie()
 
         elif "bye" in query:
@@ -90,5 +90,5 @@ while True:
         else:
             speak("I don't understand what you are saying, master. Say again.")
     except AttributeError:
-        speak('I am going back to my lamp.')
+        speak('I\'m going back to my lamp.')
         break
